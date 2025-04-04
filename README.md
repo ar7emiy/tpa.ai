@@ -79,7 +79,7 @@ The system implements a state machine workflow with the following key states:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/aiTPA.git
+   git clone https://github.com/ar7emiy/tpa.ai.git
    cd aiTPA
    ```
 
@@ -92,16 +92,6 @@ The system implements a state machine workflow with the following key states:
 3. Install dependencies:
    ```bash
    pip install -r requirements.txt
-   ```
-
-4. Set up environment variables:
-   ```bash
-   export GOOGLE_API_KEY=your_api_key_here
-   ```
-
-5. Initialize databases:
-   ```bash
-   python -m scripts.init_db
    ```
 
 ## Usage
@@ -146,8 +136,6 @@ aiTPA/
 ├── agents/                   # Agent implementations
 ├── workflow/                 # Workflow definition
 ├── tools/                    # Function calling tools
-├── prompts/                  # Prompt templates
-├── utils/                    # Utility functions
 ├── tests/                    # Tests
 └── app.py                    # Main application entry point
 ```
@@ -161,11 +149,11 @@ This project is currently in active development. The following components are im
 - [x] Workflow engine
 - [x] Conversational agent
 - [x] Verification agent
-- [ ] Medical assessment agent
-- [ ] Compliance agent
-- [ ] Decision agent
-- [ ] Payment agent
-- [ ] Recovery agent
+- [x] Medical assessment agent
+- [x] Compliance agent
+- [x] Decision agent
+- [x] Payment agent
+- [x] Recovery agent
 - [ ] End-to-end testing
 - [ ] Production deployment
 
