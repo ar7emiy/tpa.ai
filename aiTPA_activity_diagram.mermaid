@@ -1,0 +1,120 @@
+stateDiagram-v2
+    [*] --> InitialClaim: New Claim Created
+    
+    InitialClaim --> ConversationalAgent: status = NEW
+    
+    state ConversationalAgent {
+        [*] --> SimulateClaimantConversation
+        SimulateClaimantConversation --> ExtractClaimantData
+        ExtractClaimantData --> SimulateEmployerConversation
+        SimulateEmployerConversation --> ExtractEmployerData
+        ExtractEmployerData --> UpdateState
+        UpdateState --> [*]: state.status = VERIFICATION
+    }
+    
+    ConversationalAgent --> VerificationAgent: status = VERIFICATION
+    
+    state VerificationAgent {
+        [*] --> CheckEmploymentStatus
+        CheckEmploymentStatus --> ValidatePolicy
+        ValidatePolicy --> EmploymentDecision
+        EmploymentDecision --> UpdateVerificationState
+        UpdateVerificationState --> [*]
+    }
+    
+    VerificationAgent --> VerificationCheck
+    
+    state VerificationCheck <<choice>>
+        VerificationCheck --> MedicalAgent: [employment_verified == true]
+        VerificationCheck --> DeniedState: [employment_verified == false]
+    }
+    
+    state MedicalAgent {
+        [*] --> SimulateMedicalProviderConversation
+        SimulateMedicalProviderConversation --> ExtractMedicalData
+        ExtractMedicalData --> AnalyzeMedicalRecords
+        AnalyzeMedicalRecords --> AssessWorkRestrictions
+        AssessWorkRestrictions --> UpdateMedicalState
+        UpdateMedicalState --> [*]: state.status = COMPLIANCE_CHECK
+    }
+    
+    MedicalAgent --> ComplianceAgent: status = COMPLIANCE_CHECK
+    
+    state ComplianceAgent {
+        [*] --> VerifyDocumentation
+        VerifyDocumentation --> CheckReportingTimeline
+        CheckReportingTimeline --> EnsureRequirementsMet
+        EnsureRequirementsMet --> ComplianceDecision
+        ComplianceDecision --> UpdateComplianceState
+        UpdateComplianceState --> [*]
+    }
+    
+    ComplianceAgent --> ComplianceCheck
+    
+    state ComplianceCheck <<choice>>
+        ComplianceCheck --> DecisionAgent: [is_compliant == true]
+        ComplianceCheck --> ComplianceFailCheck
+    }
+    
+    state ComplianceFailCheck <<choice>>
+        ComplianceFailCheck --> MedicalAgent: [needs_medical_info == true]
+        ComplianceFailCheck --> VerificationAgent: [needs_medical_info == false]
+    }
+    
+    state DecisionAgent {
+        [*] --> EvaluateEvidence
+        EvaluateEvidence --> DetermineWorkRelatedness
+        DetermineWorkRelatedness --> CalculateCompensation
+        CalculateCompensation --> ApprovalDecision
+        ApprovalDecision --> UpdateDecisionState
+        UpdateDecisionState --> [*]
+    }
+    
+    DecisionAgent --> DecisionCheck
+    
+    state DecisionCheck <<choice>>
+        DecisionCheck --> PaymentAgent: [approved == true]
+        DecisionCheck --> DeniedState: [approved == false]
+    }
+    
+    state PaymentAgent {
+        [*] --> CalculateInitialPayment
+        CalculateInitialPayment --> ProcessPayment
+        ProcessPayment --> DocumentPayment
+        DocumentPayment --> UpdatePaymentState
+        UpdatePaymentState --> [*]: state.status = PAYMENT_PROCESSING
+    }
+    
+    PaymentAgent --> RecoveryCheck
+    
+    state RecoveryCheck {
+        [*] --> RequestRecoveryUpdate
+        RequestRecoveryUpdate --> AssessProgress
+        AssessProgress --> UpdateMedicalStatus
+        UpdateMedicalStatus --> RecoveryDecision
+        RecoveryDecision --> UpdateRecoveryState
+        UpdateRecoveryState --> [*]
+    }
+    
+    RecoveryCheck --> RecoveryDecisionCheck
+    
+    state RecoveryDecisionCheck <<choice>>
+        RecoveryDecisionCheck --> ClosedState: [fully_recovered == true]
+        RecoveryDecisionCheck --> PaymentAgent: [fully_recovered == false]
+    }
+    
+    DeniedState --> ClosedState
+    
+    state DeniedState {
+        [*] --> RecordDenialReason
+        RecordDenialReason --> NotifyClaimant
+        NotifyClaimant --> [*]: state.status = DENIED
+    }
+    
+    state ClosedState {
+        [*] --> FinalizeDocumentation
+        FinalizeDocumentation --> CloseFile
+        CloseFile --> [*]: state.status = CLOSED
+    }
+    
+    ClosedState --> [*]
