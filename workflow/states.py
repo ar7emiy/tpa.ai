@@ -1,5 +1,6 @@
 # workflow/states.py
 from typing import TypedDict, List, Dict, Any, Literal
+from enum import Enum
 
 class ClaimStatus(str, Enum):
     NEW = "new"
