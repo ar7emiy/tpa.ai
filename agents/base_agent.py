@@ -7,6 +7,8 @@ import json
 from google.generativeai import GenerativeModel
 from google.generativeai.types import FunctionDeclaration, Tool, GenerateContentConfig
 
+configure(api_key=SETTINGS["GOOGLE_API_KEY"])
+
 class BaseAgent:
     def __init__(self, model_name: str = "gemini-2.0-pro"):
         """Initialize a base agent."""
