@@ -1,0 +1,22 @@
+{
+  "claimant_info": {
+    "name": "John Doe",
+    "contact_info": "john.doe@example.com",
+    "injury_date": "2025-03-15T10:30:00Z",
+    "injury_location": "Warehouse loading dock",
+    "injury_description": "Lower back strain",
+    "how_it_occurred": "While lifting a heavy box from the floor to a shelf",
+    "witnesses": ["Jane Smith", "Bob Johnson"],
+    "medical_attention": true,
+    "medical_provider": "City General Hospital"
+  },
+  "employer_info": {
+    "company_name": "Acme Logistics Inc.",
+    "supervisor_name": "Mary Williams",
+    "contact_info": "mary.williams@acmelogistics.com",
+    "employment_duration": "3 years 4 months",
+    "job_title": "Warehouse Associate",
+    "incident_reported": true,
+    "report_date": "2025-03-15T14:45:00Z"
+  }
+}
