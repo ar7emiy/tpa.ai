@@ -1,0 +1,169 @@
+/* Tailwind CSS styles */ 
+
+/* src/styles/tailwind.css */
+
+/* Import Tailwind CSS */
+@import "tailwindcss";
+
+/* Custom classes for ClaimsPro AI application */
+
+/* Component classes */
+@layer components {
+  /* Card components */
+  .claim-card {
+    @apply bg-white rounded-md p-4 shadow-sm border border-gray-200;
+  }
+  
+  .stat-card {
+    @apply rounded p-2 text-center;
+  }
+  
+  .note-card {
+    @apply bg-white border rounded-md p-2 mb-3;
+  }
+  
+  /* Form components */
+  .form-input {
+    @apply border border-gray-300 rounded px-2 py-1.5 text-xs mt-1 w-full focus:ring-blue-500 focus:border-blue-500;
+  }
+  
+  .form-select {
+    @apply border border-gray-300 rounded px-2 py-1.5 text-xs mt-1 w-full focus:ring-blue-500 focus:border-blue-500;
+  }
+  
+  .form-textarea {
+    @apply border border-gray-300 rounded px-2 py-1.5 text-xs mt-1 w-full h-16 resize-none focus:ring-blue-500 focus:border-blue-500;
+  }
+  
+  .form-label {
+    @apply text-xs text-gray-500 block;
+  }
+  
+  .form-section {
+    @apply font-bold text-sm mt-6;
+  }
+  
+  /* Button variants */
+  .btn {
+    @apply px-6 py-2 rounded text-sm font-medium;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-500 text-white hover:bg-gray-600;
+  }
+  
+  .btn-success {
+    @apply bg-green-600 text-white hover:bg-green-700;
+  }
+  
+  .btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-700;
+  }
+  
+  .btn-warning {
+    @apply bg-yellow-400 text-white hover:bg-yellow-500;
+  }
+  
+  /* Tab components */
+  .nav-tab {
+    @apply w-24 h-12 flex items-center justify-center cursor-pointer;
+  }
+  
+  .nav-tab-active {
+    @apply bg-blue-600;
+  }
+  
+  .nav-tab-inactive {
+    @apply bg-blue-700;
+  }
+  
+  .primary-tab {
+    @apply px-6 py-2 flex items-center justify-center cursor-pointer rounded-t-md;
+  }
+  
+  .primary-tab-active {
+    @apply bg-blue-600 text-white font-bold;
+  }
+  
+  .primary-tab-inactive {
+    @apply bg-gray-200 text-gray-500;
+  }
+  
+  .secondary-tab {
+    @apply px-6 py-1.5 flex items-center justify-center cursor-pointer;
+  }
+  
+  .secondary-tab-active {
+    @apply bg-blue-200 text-blue-600 font-bold;
+  }
+  
+  .secondary-tab-inactive {
+    @apply bg-blue-100 text-blue-600;
+  }
+  
+  /* Badge components */
+  .badge {
+    @apply px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-new {
+    @apply bg-red-600 text-white;
+  }
+  
+  .badge-critical {
+    @apply bg-red-600 text-white;
+  }
+  
+  .badge-high {
+    @apply bg-yellow-400 text-white;
+  }
+  
+  .badge-normal {
+    @apply bg-green-500 text-white;
+  }
+  
+  /* Data display components */
+  .comm-icon {
+    @apply w-6 h-6 rounded-full flex items-center justify-center text-white text-xs;
+  }
+  
+  .table-header {
+    @apply bg-gray-200 border px-2 py-2 flex text-xs font-bold;
+  }
+  
+  .table-row {
+    @apply border border-t-0 px-2 py-3 flex;
+  }
+  
+  .progress-bar {
+    @apply bg-gray-200 rounded-full h-5 overflow-hidden;
+  }
+  
+  .progress-value {
+    @apply h-5 rounded-full flex items-center pl-2 text-xs text-white;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
